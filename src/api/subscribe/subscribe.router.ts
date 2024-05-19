@@ -1,11 +1,11 @@
 import express from 'express';
 
-import resStatus from '../../configs/resStatus.config';
+import subscribeEmail from './controllers/subscribeEmail.controller';
+import checkEmailDuplicate from './middlewares/checkEmailDuplicate.mdlwr';
+import validateBody from './middlewares/validateBody.mdlwr';
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
-  res.status(resStatus.OK).json();
-});
+router.post('/', validateBody, checkEmailDuplicate, subscribeEmail);
 
 export default router;

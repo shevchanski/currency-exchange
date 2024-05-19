@@ -5,7 +5,7 @@
   "main": "src/app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "pm2 start --interpreter ts-node src/app.ts --watch --time --ignore-watch='node_modules'",
+    "dev": "pm2 kill && pm2 start --interpreter ts-node src/app.ts --watch --time --ignore-watch='node_modules'",
     "prepare": "husky",
     "commitlint": "commitlint --verbose --edit",
     "lint": "npx eslint . --ext .ts"

@@ -1,25 +1,13 @@
-import axios from 'axios';
 import { Request, Response } from 'express';
 
-import { exchangeAPI } from '../../../configs/global.config';
 import resStatus from '../../../configs/resStatus.config';
-import APIError from '../../../errors/APIError';
 import errorWrapper from '../../../errors/errorWrapper';
+import { getActualCurrencyRate } from '../../../services/getCurrencyRate.service';
 
 const returnUsdToUahRate = errorWrapper(async (req: Request, res: Response) => {
-  if (!exchangeAPI.KEY) {
-    throw new APIError(resStatus.INTERNAL_ERROR, 'API-key is not defined.');
-  }
+  const actualRate = await getActualCurrencyRate('USD', 'UAH');
 
-  const url_rateUSDtoUAH =
-    exchangeAPI.ULR +
-    'latest?api_key=' +
-    exchangeAPI.KEY +
-    '&base=USD&symbols=UAH';
-
-  const response = await axios.get(url_rateUSDtoUAH);
-
-  res.status(resStatus.OK).json(response.data?.rates?.UAH).send();
+  res.status(resStatus.OK).json(actualRate).send();
 });
 
 export default returnUsdToUahRate;

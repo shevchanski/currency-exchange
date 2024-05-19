@@ -13,7 +13,7 @@ describe('POST /subscribe', () => {
     expect(typeof response.body).toBe('object');
     expect(response.body).toHaveProperty('errorMessage');
     expect(typeof response.body.errorMessage).toBe('string');
-    expect(response.body.errorMessage).toBe('Email is not provided.');
+    expect(response.body.errorMessage).toBe('"email" is required');
   });
 
   test('400 | Send empty object ', async () => {
@@ -23,7 +23,7 @@ describe('POST /subscribe', () => {
     expect(typeof response.body).toBe('object');
     expect(response.body).toHaveProperty('errorMessage');
     expect(typeof response.body.errorMessage).toBe('string');
-    expect(response.body.errorMessage).toBe('Email is not provided.');
+    expect(response.body.errorMessage).toBe('"email" is required');
   });
 
   test('200 | Send empty object ', async () => {
@@ -51,12 +51,12 @@ describe('POST /subscribe', () => {
       .post(GlobalRoutes.SUBSCRIBE)
       .send({ email });
 
-    expect(secondSubscribe.status).toBe(resStatus.BAD_REQUEST);
+    expect(secondSubscribe.status).toBe(resStatus.CONFLICT);
     expect(typeof secondSubscribe.body).toBe('object');
     expect(secondSubscribe.body).toHaveProperty('errorMessage');
     expect(typeof secondSubscribe.body.errorMessage).toBe('string');
     expect(secondSubscribe.body.errorMessage).toBe(
-      'Email is already subscribed.'
+      'Email is already subscribed'
     );
   });
 });

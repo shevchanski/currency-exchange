@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "dev": "pm2 kill && pm2 start --interpreter ts-node src/app.ts --watch --time --ignore-watch='node_modules'",
     "prepare": "husky",
     "commitlint": "commitlint --verbose --edit",
@@ -42,7 +42,8 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "pm2": "^5.3.1"
+    "pm2": "^5.3.1",
+    "axios": "^1.6.8"
   },
   "commitlint": {
     "extends": [

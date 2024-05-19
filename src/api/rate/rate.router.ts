@@ -1,11 +1,9 @@
 import express from 'express';
 
-import resStatus from '../../configs/resStatus.config';
+import returnUsdToUahRate from './controllers/returnRate.controller';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(resStatus.OK).send();
-});
+router.get('/', returnUsdToUahRate);
 
 export default router;

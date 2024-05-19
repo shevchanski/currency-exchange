@@ -15,4 +15,9 @@ const DB_Config = {
   TestURL: `${serverConfig.DB_URL}/exchangeCurrency-test`
 };
 
-export { DB_Config, GlobalRoutes, exchangeAPI };
+const MailConfig = {
+  GMAIL_ADDRESS: process.env.MAIL_SERVICE_ACC,
+  GMAIL_PASS: process.env.MAIL_SERVICE_PASS
+};
+
+export { DB_Config, GlobalRoutes, MailConfig, exchangeAPI };

@@ -4,10 +4,14 @@ import path from 'node:path';
 
 dotenv.config({ path: path.join(process.cwd(), '.env.example') });
 
+import rateRouter from './api/rate/rate.router';
+import { GlobalRoutes } from './configs/global.config';
 import serverConfig from './configs/server.config';
 import errorHandler from './errors/errorHandler';
 
 const app = express();
+
+app.use(GlobalRoutes.RATE, rateRouter);
 
 // next line we define to use as global mdlwr to handle all errors
 app.use(errorHandler);

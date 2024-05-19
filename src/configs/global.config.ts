@@ -1,3 +1,5 @@
+import serverConfig from './server.config';
+
 enum GlobalRoutes {
   RATE = '/rate',
   SUBSCRIBE = '/subscribe'
@@ -8,4 +10,9 @@ const exchangeAPI = {
   KEY: process.env.EXCHANGE_API_KEY
 };
 
-export { GlobalRoutes, exchangeAPI };
+const DB_Config = {
+  RootURL: `${serverConfig.DB_URL}/exchangeCurrency`,
+  TestURL: `${serverConfig.DB_URL}/exchangeCurrency-test`
+};
+
+export { DB_Config, GlobalRoutes, exchangeAPI };

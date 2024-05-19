@@ -1,16 +1,25 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import mongoose from 'mongoose';
 import path from 'node:path';
 
 dotenv.config({ path: path.join(process.cwd(), '.env.example') });
 
 import rateRouter from './api/rate/rate.router';
 import subscribeRouter from './api/subscribe/subscribe.router';
-import { GlobalRoutes } from './configs/global.config';
+import { DB_Config, GlobalRoutes } from './configs/global.config';
 import serverConfig from './configs/server.config';
 import errorHandler from './errors/errorHandler';
 
+if (process.env.NODE_ENV !== 'test') {
+  mongoose.set({ debug: true });
+  mongoose.connect(DB_Config.RootURL);
+}
+
 const app = express();
+
+// high-level middleware to parse request's json-body
+app.use(express.json());
 
 // define what router will handle routes on '/rate'
 app.use(GlobalRoutes.RATE, rateRouter);

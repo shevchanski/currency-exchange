@@ -19,13 +19,14 @@ const config: Config = {
   // clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  //   collectCoverage: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
   coverageDirectory: 'coverage',
+  verbose: true,
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
@@ -192,8 +193,8 @@ const config: Config = {
   // Whether to use watchman for file crawling
   // watchman: true,
   preset: 'ts-jest',
-  globalSetup: '<rootDir>/src/__test__/env.setup.ts'
-  //   setupFilesAfterEnv: ['<rootDir>/src/__test__/jest.setup.ts']
+  globalSetup: '<rootDir>/src/__test__/env.setup.ts',
+  setupFilesAfterEnv: ['<rootDir>/src/__test__/jest.setup.ts']
 };
 
 export default config;

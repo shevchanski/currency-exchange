@@ -1,13 +1,18 @@
 import { NextFunction, Request, Response } from 'express';
+interface IRequest extends Request {
+  locals?: {
+    validatedEmail?: string;
+  }; // eslint-disable-line @typescript-eslint/no-explicit-any
+}
 
-type Controller = (req: Request, res: Response) => Promise<void> | void;
+type Controller = (req: IRequest, res: Response) => Promise<void> | void;
 
 type Middleware = (
-  req: Request,
+  req: IRequest,
   res: Response,
   next: NextFunction
 ) => Promise<void> | void;
 
-type ErrorWrapperCallback = Controller & Middleware;
+type ErrorWrapperCallback = Controller | Middleware;
 
-export { Controller, ErrorWrapperCallback, Middleware };
+export { Controller, ErrorWrapperCallback, IRequest, Middleware };

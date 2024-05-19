@@ -9,6 +9,7 @@ import rateRouter from './api/rate/rate.router';
 import subscribeRouter from './api/subscribe/subscribe.router';
 import { DB_Config, GlobalRoutes } from './configs/global.config';
 import serverConfig from './configs/server.config';
+import cronRun from './cron-jobs/cron-run';
 import errorHandler from './errors/errorHandler';
 
 if (process.env.NODE_ENV !== 'test') {
@@ -38,5 +39,7 @@ if (process.env.NODE_ENV !== 'test') {
     );
   });
 }
+
+cronRun();
 
 export default app;

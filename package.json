@@ -5,8 +5,10 @@
   "main": "src/app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pm2 start --interpreter ts-node src/app.ts --watch --time --ignore-watch='node_modules'",
     "prepare": "husky",
-    "commitlint": "commitlint --verbose --edit"
+    "commitlint": "commitlint --verbose --edit",
+    "lint": "npx eslint . --ext .ts"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,9 @@
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.0.11",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "ts-node": "^10.9.2",
+    "eslint": "^8.57.0"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -43,6 +47,11 @@
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
     }
   }
 }
